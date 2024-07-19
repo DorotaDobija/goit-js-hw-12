@@ -27,6 +27,9 @@ display: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
 }
 
 input {
@@ -111,6 +114,7 @@ input:focus {
 }
 
 .loader {
+    display: none;
     color: #808080;
     font-size: 7px;
     position: relative;

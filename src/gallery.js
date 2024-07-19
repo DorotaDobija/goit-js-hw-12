@@ -7,12 +7,15 @@ import axios from "axios";
 const formEl = document.querySelector("form");
 const gallery = document.querySelector(".gallery");
 const paginationButton = document.querySelector(".pagination_btn");
+const loaderEL = document.querySelector(".loader");
+
 const lightbox = new SimpleLightbox('.gallery a');
 
 let pageValue;
 let searchValue;
 
 const fetchImages = async (value) => {
+    loaderEL.style.display = "block";
     await axios.get('https://pixabay.com/api/', {
         params: {
             key: "35719926-181ab604ec6a85b118ffdb3f0",
@@ -37,7 +40,7 @@ const fetchImages = async (value) => {
             });
         };
         createListItemToAdd(imagesArr);
-    
+        loaderEL.style.display = "none";
         if (imagesFetched >= imagesTotal) {
             iziToast.info({
                 title: '',
@@ -78,15 +81,15 @@ const sendRequest = async (event) => {
     pageValue = 1;
     paginationButton.style.display = "none";
     gallery.textContent = "";
-    // gallery.insertAdjacentHTML("afterbegin", '<span class="loader"></span>')
     searchValue = event.target.elements[0].value;
     event.preventDefault();
     fetchImages(searchValue);
     clearFunc(formEl);
-    
+
     };
     
 const paginationFunc = () => {
+    paginationButton.style.display = "none";
     pageValue++;
     fetchImages(searchValue);
 }
