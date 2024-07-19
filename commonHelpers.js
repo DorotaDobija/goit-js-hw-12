@@ -7,5 +7,5 @@ import"./assets/modulepreload-polyfill-3cfb730f.js";import{S as g,a as y,i as c}
         <p class="information"><span class="information_header">Comments:</span>${e.comments}</p>
         <p class="information"><span class="information_header">Downloads:</span>${e.downloads}</p></div>
         </div>
-        </li>`).join("");l.insertAdjacentHTML("beforeend",a),s.style.display="block";const i=document.querySelector(".gallery_img").getBoundingClientRect();window.scrollBy(0,2*i),h.refresh()},u=t=>{t.reset()},b=async t=>{n=1,s.style.display="none",l.textContent="",r=t.target.elements[0].value,t.preventDefault(),m(r),u(d)},w=()=>{s.style.display="none",n++,m(r)};d.addEventListener("submit",b);s.addEventListener("click",w);
+        </li>`).join("");l.insertAdjacentHTML("beforeend",a),s.style.display="block";const i=document.querySelector(".gallery_img").getBoundingClientRect();window.scrollBy(0,2*i),h.refresh()},u=t=>{t.reset()},b=t=>{n=1,s.style.display="none",l.textContent="",r=t.target.elements[0].value,t.preventDefault(),m(r),u(d)},w=()=>{s.style.display="none",n++,m(r)};d.addEventListener("submit",b);s.addEventListener("click",w);
 //# sourceMappingURL=commonHelpers.js.map
