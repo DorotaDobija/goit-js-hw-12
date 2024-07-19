@@ -77,7 +77,7 @@ const clearFunc = (form) => {
     form.reset();
 }
     
-const sendRequest = async (event) => {
+const sendRequest = (event) => {
     pageValue = 1;
     paginationButton.style.display = "none";
     gallery.textContent = "";
@@ -85,7 +85,6 @@ const sendRequest = async (event) => {
     event.preventDefault();
     fetchImages(searchValue);
     clearFunc(formEl);
-
     };
     
 const paginationFunc = () => {
