@@ -21,6 +21,8 @@ button:hover {
 }
 .pagination_btn {
 width: 125px;
+}
+.invisible {
 display: none;
 }
 .pagination_btn_box {
@@ -114,7 +116,6 @@ input:focus {
 }
 
 .loader {
-    display: none;
     color: #808080;
     font-size: 7px;
     position: relative;

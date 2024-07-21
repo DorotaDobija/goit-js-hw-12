@@ -15,7 +15,7 @@ let pageValue;
 let searchValue;
 
 const fetchImages = async (value) => {
-    loaderEL.style.display = "block";
+    loaderEL.classList.toggle("invisible");
     await axios.get('https://pixabay.com/api/', {
         params: {
             key: "35719926-181ab604ec6a85b118ffdb3f0",
@@ -40,14 +40,14 @@ const fetchImages = async (value) => {
             });
         };
         createListItemToAdd(imagesArr);
-        loaderEL.style.display = "none";
+        loaderEL.classList.toggle("invisible");
         if (imagesFetched >= imagesTotal) {
             iziToast.info({
                 title: '',
                 message: "We're sorry, but you've reached the end of search results.",
                 position: 'topRight'
             });
-            paginationButton.style.display = "none";
+            paginationButton.classList.toggle("invisible");
         }
         
     }).catch(error => console.log(error));
@@ -66,10 +66,17 @@ const createListItemToAdd = (arr) => {
         </div>
         </li>`).join('');
     gallery.insertAdjacentHTML("beforeend", image);
-    paginationButton.style.display = "block";
-    const imageEl = document.querySelector(".gallery_img");
-    const rect = imageEl.getBoundingClientRect();
-    window.scrollBy(0, 2 * rect);
+    paginationButton.classList.toggle("invisible");
+    console.log(pageValue)
+    if (pageValue > 1) {
+        const imageEl = document.querySelector(".gallery_img");
+        const rect = imageEl.getBoundingClientRect();
+        window.scrollBy({
+        top: 2*rect.height,
+        behavior: "smooth",
+     });
+    }
+
     lightbox.refresh();
 }
 
@@ -79,16 +86,15 @@ const clearFunc = (form) => {
     
 const sendRequest = (event) => {
     pageValue = 1;
-    paginationButton.style.display = "none";
     gallery.textContent = "";
     searchValue = event.target.elements[0].value;
     event.preventDefault();
     fetchImages(searchValue);
     clearFunc(formEl);
-    };
+};
     
 const paginationFunc = () => {
-    paginationButton.style.display = "none";
+    paginationButton.classList.toggle("invisible");
     pageValue++;
     fetchImages(searchValue);
 }
